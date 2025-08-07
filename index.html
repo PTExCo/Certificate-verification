@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vérification de Certificat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f4f8fb;
+      color: #333;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background-color: #0a74da;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 4px;
+    }
+    .valid {
+      background-color: #e0f7e9;
+      color: #2e7d32;
+    }
+    .invalid {
+      background-color: #fdecea;
+      color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Vérification de Certificat</h2>
+    <p>Veuillez entrer l'identifiant du certificat :</p>
+    <input type="text" id="certId" placeholder="Ex: BC-AI-2025-014" />
+    <button onclick="verifierCertificat()">Vérifier</button>
+    <div id="resultat" class="result" style="display: none;"></div>
+  </div>
+
+  <script>
+    const certificats = {
+      "CF-INFPYAI-2025-001": {
+        nom: "Jude Babingui",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+      "CF-INFPYAI-2025-002": {
+        nom: "Precieux Babingui",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+      "CF-INFPYAI-2025-003": {
+        nom: "Benjamin Tchikaya",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+      "CF-INFPYAI-2025-003": {
+        nom: "Aurore Tchikaya",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+      "CF-INFPYAI-2025-004": {
+        nom: "Benjamin Tchikaya",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+      "CF-INFPYAI-2025-005": {
+        nom: "Emmanuelle Mboussou",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+      "CF-INFPYAI-2025-006": {
+        nom: "Lise-Samuel Mboumbou",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+      "CF-INFPYAI-2025-007": {
+        nom: "Angelina",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+      "CF-INFPYAI-2025-008": {
+        nom: "Durney",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+      "CF-INFPYAI-2025-009": {
+        nom: "Aldric",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+      "CF-INFPYAI-2025-010": {
+        nom: "Divin-Roi",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+      "CF-INFPYAI-2025-011": {
+        nom: "Yannis",
+        programme: "Camp Vacances Fondamentaux Informatique & Initiation à l'Intelligence Artificielle",
+        dates: "22 Juillet au 09 août 2025",
+        organisme: "PTExCo"
+      },
+
+    };
+
+    function verifierCertificat() {
+      const id = document.getElementById("certId").value.trim();
+      const resultDiv = document.getElementById("resultat");
+
+      if (certificats[id]) {
+        const c = certificats[id];
+        resultDiv.innerHTML = `✅ Certificat valide<br><strong>Nom :</strong> ${c.nom}<br><strong>Programme :</strong> ${c.programme}<br><strong>Dates :</strong> ${c.dates}<br><strong>Organisme :</strong> ${c.organisme}`;
+        resultDiv.className = "result valid";
+      } else {
+        resultDiv.innerHTML = `❌ Certificat invalide ou non reconnu.`;
+        resultDiv.className = "result invalid";
+      }
+
+      resultDiv.style.display = "block";
+    }
+  </script>
+</body>
+</html>
